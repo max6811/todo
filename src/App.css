@@ -37,3 +37,8 @@ ul {
     display: block;
     clear: both;
 }
+
+.delete {
+    color: red;
+    cursor: pointer;
+}

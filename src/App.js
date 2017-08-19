@@ -4,17 +4,11 @@ import './App.css';
 import TodoForm from './components/TodoForm'
 import TodoList from './components/TodoList'
 import Footer from './components/Footer'
-import {AddTodo} from './services/TodoService'
+import {AddTodo, loadTodos, updateTodo, deleteTodo } from './services/TodoService'
 
 class App extends Component {
   state = {
-    todos: [
-        {id:1, name: "Aprender React"},
-        {id:2, name: "Aprender Redux"},
-        {id:3, name: "Aprender JS"},
-        {id:4, name: "Aprender ES6"},
-        {id:5, name: "Aprender HTML"}
-    ]
+    todos: []
   }
 
   handleSubmit = (value) => {
@@ -25,6 +19,31 @@ class App extends Component {
     })
   }
 
+ componentDidMount = () => {
+    //  loadTodos.then(todos => setState({todos:todos}))
+    loadTodos().then(todos => {
+        this.setState({todos})
+    })
+ }
+
+ handleUpdate = (id, active) => {
+    updateTodo(id, active).then(data => {
+        loadTodos().then(todos => {
+            this.setState({todos})
+        })
+    })
+ }
+
+ handleDelete = (id) => {
+     console.log(id);
+     deleteTodo(id).then(res => {
+         console.log(res);
+        loadTodos().then(todos => {
+            this.setState({todos})
+        })
+     })
+ }
+
   render() {
     return (
       <div className="App">
@@ -34,7 +53,7 @@ class App extends Component {
         </div>
         <div>
             <TodoForm handleSubmit={this.handleSubmit} />
-            <TodoList todos={this.state.todos}   />
+            <TodoList handleDelete={this.handleDelete} handleUpdate={this.handleUpdate} todos={this.state.todos}   />
             <Footer />
         </div>
       </div>

@@ -5,6 +5,7 @@ import React, {Component} from 'react'
 class TodoForm extends Component {
 
     render () {
+        console.log(this.props);
         let input
         return (
         <div>

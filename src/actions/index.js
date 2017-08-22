@@ -43,3 +43,10 @@ export const LoadTodosAction = (todos) => {
         todos
     }
 }
+
+export const setVisibility = (filter) => {
+    return {
+        type: 'SET_VISIBILITY',
+        filter
+    }
+}

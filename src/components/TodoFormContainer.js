@@ -13,7 +13,6 @@ const mapDispatchToProps = (dispatch) => {
                     dispatch(
                         AddTodoAction(todo.id, todo.name, todo.active)
                     )
-
                     console.log('done')
                     }
                 )

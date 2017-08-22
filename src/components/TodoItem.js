@@ -7,13 +7,15 @@ const TodoItem = (props) => (
     }}
     style={{textDecoration: props.active ? 'line-through': ''}}
     >
-    {props.name} { '     '}
     <a className="delete" onClick={(e) => {
         e.preventDefault()
         props.handleDelete(props.id)
     }}>
         X
     </a>
+    { '           '}
+    {props.name}
+
     </li>
 )
 // const TodoItem = (props) => {
